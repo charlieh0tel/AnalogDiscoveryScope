@@ -4,12 +4,13 @@
 # Created by D Mercer ()
 from ctypes import *
 import math
+import sys
 import time
-import tkFont
-from Tkinter import *
-from tkFileDialog import askopenfilename
-from tkSimpleDialog import askstring
-from tkMessageBox import *
+import tkinter.font as tkFont
+from tkinter import *
+from tkinter.filedialog import askopenfilename
+from tkinter.simpledialog import askstring
+from tkinter.messagebox import *
 
 # define DWF DLL library
 if sys.platform.startswith("win"):
@@ -1000,7 +1001,7 @@ def MakeScreen():     # Update the screen with traces and text
         if (RUNstatus == 0) or (RUNstatus == 3):
             sttxt = "Stopped long sweep, press Start"
 
-    txt = "DWF Library " + version.value + "   Sample rate: " + str(SAMPLErate) + " " + sttxt
+    txt = "DWF Library " + str(version.value) + "   Sample rate: " + str(SAMPLErate) + " " + sttxt
 
     x = X0L
     y = 12
@@ -1102,9 +1103,9 @@ frame3 = Frame(root, borderwidth=5, relief=RIDGE)
 frame3.pack(side=TOP, expand=1, fill=X)
 # make Trigger sub Menue
 #
-TgMode = IntVar(0)   # Trigger mode variable
-TgChan = IntVar(0)   # Trigger Channel variable
-TgEdge = IntVar(0)   # Trigger Edge variable
+TgMode = IntVar(value=0)   # Trigger mode variable
+TgChan = IntVar(value=0)   # Trigger Channel variable
+TgEdge = IntVar(value=0)   # Trigger Edge variable
 #
 tm = Radiobutton(frame1, text="None", variable=TgMode, value=0, command=BTriggerMode)
 tm.pack(side=LEFT)
@@ -1145,8 +1146,8 @@ ca = Canvas(frame2, width=CANVASwidth, height=CANVASheight, background=COLORcanv
 ca.pack(side=TOP)
 
 # make power supply / Function Generator sub Menue
-PfiveV = IntVar(0)   # +5 V power supply on/off variable
-NfiveV = IntVar(0)   # -5 V power supply on/off variable
+PfiveV = IntVar(value=0)   # +5 V power supply on/off variable
+NfiveV = IntVar(value=0)   # -5 V power supply on/off variable
 #
 ps1lab = Label(frame2r, text="Power Supply")
 ps1lab.grid(row=0, column=0, columnspan=2)
@@ -1155,7 +1156,7 @@ pv.grid(row=1, column=0)
 nv = Checkbutton(frame2r, text="-5V", variable=NfiveV, command=BSupplyOnOff)
 nv.grid(row=1, column=1)
 # now AWG 1
-AWG1Enab = IntVar(0)   # AWG1 on/off variable
+AWG1Enab = IntVar(value=0)   # AWG1 on/off variable
 awg1lab1 = Label(frame2r, text="AWG CH 1")
 awg1lab1.grid(row=2, column=0, columnspan=2)
 awg1en = Checkbutton(frame2r, text="Enable", variable=AWG1Enab, command=BAWGEnab)
@@ -1201,7 +1202,7 @@ AWG1Shapesb = Spinbox(frame2r, width=7, values=AWGShape, command=BAWG1Shape)
 AWG1Shapesb.grid(row=10, column=0)
 
 # now AWG 2
-AWG2Enab = IntVar(0)   # AWG2 on/off variable
+AWG2Enab = IntVar(value=0)   # AWG2 on/off variable
 awg2lab1 = Label(frame2r, text="AWG CH 2")
 awg2lab1.grid(row=11, column=0, columnspan=2)
 awg2en = Checkbutton(frame2r, text="Enable", variable=AWG2Enab, command=BAWGEnab)
@@ -1246,7 +1247,7 @@ AWG2SymmetryEntry.insert(0,50.0)
 AWG2Shapesb = Spinbox(frame2r, width=7, values=AWGShape, command=BAWG2Shape)
 AWG2Shapesb.grid(row=19, column=0)
 
-AWGSync = IntVar(0) # Sync start both AWG channels
+AWGSync = IntVar(value=0) # Sync start both AWG channels
 awgsync = Checkbutton(frame2r, text="Sync AWG", variable=AWGSync, command=BAWGSync)
 awgsync.grid(row=20, column=0)
 #

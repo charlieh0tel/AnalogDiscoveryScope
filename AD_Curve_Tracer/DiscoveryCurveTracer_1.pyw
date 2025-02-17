@@ -4,12 +4,12 @@
 # Created by D Mercer
 from ctypes import *
 import math
+import sys
 import time
-import tkFont
-from Tkinter import *
-from tkFileDialog import askopenfilename
-from tkSimpleDialog import askstring
-from tkMessageBox import *
+from tkinter import *
+from tkinter.filedialog import askopenfilename
+from tkinter.simpledialog import askstring
+from tkinter.messagebox import *
 
 # define DWF DLL library
 if sys.platform.startswith("win"):
@@ -868,7 +868,7 @@ def MakeScreen():     # Update the screen with traces and text
         if (RUNstatus == 0) or (RUNstatus == 3):
             sttxt = "Stopped long sweep, press Start"
 
-    txt = "DWF Library " + version.value + "   Sample rate: " + str(SAMPLErate) + " " + sttxt
+    txt = "DWF Library " + str(version.value) + "   Sample rate: " + str(SAMPLErate) + " " + sttxt
 
     x = X0L
     y = 12
@@ -957,9 +957,9 @@ frame3 = Frame(root, borderwidth=5, relief=RIDGE)
 frame3.pack(side=TOP, expand=1, fill=X)
 # make Trigger sub Menue
 #
-TgMode = IntVar(0)   # Trigger mode variable
-TgChan = IntVar(0)   # Trigger Channel variable
-TgEdge = IntVar(0)   # Trigger Edge variable
+TgMode = IntVar(value=0)   # Trigger mode variable
+TgChan = IntVar(value=0)   # Trigger Channel variable
+TgEdge = IntVar(value=0)   # Trigger Edge variable
 #
 tm = Radiobutton(frame1, text="None", variable=TgMode, value=0, command=BTriggerMode)
 tm.pack(side=LEFT)
@@ -997,8 +997,8 @@ ca = Canvas(frame2, width=CANVASwidth, height=CANVASheight, background=COLORcanv
 ca.pack(side=TOP)
 
 # make power supply / Function Generator sub Menue
-PfiveV = IntVar(0)   # +5 V power supply on/off variable
-NfiveV = IntVar(0)   # -5 V power supply on/off variable
+PfiveV = IntVar(value=0)   # +5 V power supply on/off variable
+NfiveV = IntVar(value=0)   # -5 V power supply on/off variable
 #
 pslab = Label(frame2r, text="Power Supply")
 pslab.grid(row=0, column=0, columnspan=2)
@@ -1058,7 +1058,7 @@ AWG2OffsetEntry.grid(row=9, column=1)
 AWG2OffsetEntry.delete(0,"end")
 AWG2OffsetEntry.insert(0,0.65)
 
-DevTyp = IntVar(0)   # Device Type variable
+DevTyp = IntVar(value=0)   # Device Type variable
 dt = Radiobutton(frame2r, text="NPN", variable=DevTyp, value=0, command=BDevTyp)
 dt.grid(row=10, column=0)
 dt = Radiobutton(frame2r, text="PNP", variable=DevTyp, value=1, command=BDevTyp)
